@@ -1,0 +1,47 @@
+<ng-template #openSideBar>
+  <mat-icon>first_page</mat-icon>
+</ng-template>
+
+<ng-template #closeSideBar>
+  <mat-icon>last_page</mat-icon>
+</ng-template>
+
+<ng-template #appName>
+  <div
+    [style.padding-left.px]="isExpanded ? 20 : 0"
+    [style.padding-right.px]="isExpanded ? 20 : 0"
+  >
+    Angular App
+  </div>
+</ng-template>
+
+<mat-drawer-container class="example-container mat-typography" autosize>
+  <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+    <div style="display: flex; justify-content: flex-end; align-items: center">
+      <ng-container *ngIf="isExpanded; then appName" />
+      <button
+        (click)="toggleDrawer()"
+        mat-mini-fab
+        color="warn"
+        style="margin: 10px"
+      >
+        <ng-container *ngIf="isExpanded; then openSideBar; else closeSideBar" />
+      </button>
+    </div>
+
+    <mat-nav-list *ngFor="let navItem of navItems">
+      <mat-list-item (click)="handleNavClick(navItem)">
+        <div style="display: flex">
+          <mat-icon>{{ navItem.icon }}</mat-icon>
+          <span style="padding-left: 10px" mat-line *ngIf="isExpanded">{{
+            navItem.navItem
+          }}</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

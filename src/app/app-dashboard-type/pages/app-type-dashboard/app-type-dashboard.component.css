@@ -1,0 +1,8 @@
+.app-type-container{
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    align-items: center;
+    height: 100vh;
+    
+}

@@ -1,0 +1,16 @@
+<div class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      autocomplete="off"
+      [(ngModel)]="input"
+      [type]="type"
+      [name]="name"
+      [placeholder]="placeHolder"
+    />
+    <!-- <mat-error *ngIf="isNotValid">
+      {{ errorMessage ? errorMessage : "Field is Required" }}
+    </mat-error> -->
+  </mat-form-field>
+</div>

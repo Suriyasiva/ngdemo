@@ -1,0 +1,7 @@
+<div class="app-type-container">
+  <app-app-type-card
+    *ngFor="let appType of appTypes"
+    [appType]="appType"
+    (selectedTaskIndex)="openDialog($event)"
+  />
+</div>

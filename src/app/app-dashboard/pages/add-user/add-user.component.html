@@ -1,0 +1,504 @@
+<ng-template #formError>
+  <p style="color: red; font-size: small; margin: 10px 0 10px 0">
+    Field is Required
+  </p>
+</ng-template>
+
+<form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+  <mat-stepper
+    [selectedIndex]="stepperIndex"
+    color="accent"
+    style="padding: 2rem"
+    linear
+    #stepper
+  >
+    <div class="create-user-container">
+      <mat-step>
+        <ng-template matStepLabel>User Details</ng-template>
+
+        <div
+          style="display: flex; flex-wrap: wrap; justify-content: space-around"
+        >
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">User Name</mat-label>
+              <input
+                matInput
+                autocomplete="off"
+                type="text"
+                formControlName="userName"
+                name="userName"
+                placeholder="Enter the User Name"
+              />
+            </mat-form-field>
+          </div>
+
+          <!-- email -->
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">Email</mat-label>
+              <input
+                matInput
+                autocomplete="off"
+                type="email"
+                formControlName="email"
+                name="email"
+                placeholder="Enter the Email"
+              />
+            </mat-form-field>
+          </div>
+
+          <!-- contact number -->
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">Contact Number</mat-label>
+              <input
+                matInput
+                autocomplete="off"
+                type="number"
+                formControlName="contactNumber"
+                name="contactNumber"
+                placeholder="Enter the Contact Number"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+          "
+        >
+          <!-- Gender -->
+          <div class="example-form">
+            <mat-label>Gender</mat-label>
+            <br />
+            <mat-radio-group
+              name="gender"
+              formControlName="gender"
+              aria-label="Select an option"
+            >
+              <mat-radio-button style="margin-right: 10px" value="male"
+                >Male</mat-radio-button
+              >
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <!-- marital status -->
+          <div class="example-form">
+            <mat-form-field
+              style="width: 100%"
+              appearance="outline"
+              color="accent"
+            >
+              <mat-label style="color: white">Select Marital Status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option value="married">Married</mat-option>
+                <mat-option value="single">Single</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- dob -->
+          <div class="example-form">
+            <mat-form-field
+              style="width: 100%"
+              color="accent"
+              appearance="outline"
+            >
+              <mat-label style="color: white">Choose a date</mat-label>
+              <input matInput formControlName="dob" [matDatepicker]="picker" />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- contact information -->
+
+        <div
+          style="display: flex; flex-wrap: wrap; justify-content: space-around"
+          formGroupName="address"
+        >
+          <!--  -street -->
+
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">Street</mat-label>
+              <input
+                matInput
+                name="street"
+                formControlName="street"
+                type="text"
+                placeholder="Enter the Street Name"
+              />
+            </mat-form-field>
+          </div>
+
+          <!-- city -->
+
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">City</mat-label>
+              <input
+                matInput
+                name="city"
+                formControlName="city"
+                type="text"
+                placeholder="Enter the City Name"
+              />
+            </mat-form-field>
+          </div>
+
+          <!--  state -->
+          <div class="example-form">
+            <mat-form-field
+              color="accent"
+              appearance="outline"
+              class="example-full-width"
+            >
+              <mat-label style="color: white">State</mat-label>
+              <input
+                matInput
+                name="state"
+                formControlName="state"
+                type="text"
+                placeholder="Enter the State Name"
+              />
+            </mat-form-field>
+          </div>
+
+          <!-- zipCode -->
+
+          <div style="width: 100%; margin-left: 20px">
+            <div class="example-form">
+              <mat-form-field
+                color="accent"
+                appearance="outline"
+                class="example-full-width"
+              >
+                <mat-label style="color: white">Zip Code</mat-label>
+                <input
+                  matInput
+                  name="zipCode"
+                  formControlName="zipCode"
+                  type="number"
+                  maxlength="6"
+                  placeholder="Enter the Zip Code "
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end">
+          <button type="button" mat-raised-button color="accent" matStepperNext>
+            Next
+          </button>
+        </div>
+      </mat-step>
+
+      <!--  stepper 2 -->
+
+      <mat-step>
+        <ng-template matStepLabel>User Data</ng-template>
+
+        <div style="display: flex; gap: 2%">
+          <div>
+            <div formGroupName="loanDetails">
+              <div class="example-form">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="example-full-width"
+                >
+                  <mat-label style="color: white">Original Name</mat-label>
+                  <input
+                    matInput
+                    autocomplete="off"
+                    type="text"
+                    formControlName="originalName"
+                    name="originalName"
+                    placeholder="Enter the Original Name"
+                  />
+                  <mat-hint>Name in Aadhaar Card </mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="example-form">
+                <mat-form-field
+                  style="width: 100%"
+                  appearance="outline"
+                  color="accent"
+                >
+                  <mat-label style="color: white">Loan Type</mat-label>
+                  <mat-select formControlName="loanType">
+                    <mat-option value="percentage">Percentage</mat-option>
+                    <mat-option value="rupee">Rupee</mat-option>
+                    <!-- <mat-option value="paisa">Paisa</mat-option> -->
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="example-form">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="example-full-width"
+                >
+                  <mat-label style="color: white">Principal Amount</mat-label>
+                  <input
+                    matInput
+                    autocomplete="off"
+                    type="number"
+                    formControlName="principalAmount"
+                    name="principalAmount"
+                    placeholder="Enter the Principal Amount"
+                  />
+                  <span matTextPrefix>₹&nbsp;</span>
+                </mat-form-field>
+              </div>
+
+              <div style="margin: 10px 0"></div>
+
+              <div
+                style="width: max-content; display: flex; gap: 2rem"
+                formGroupName="timePeriodDetails"
+              >
+                <div class="example-form">
+                  <mat-form-field
+                    style="width: 100%"
+                    appearance="outline"
+                    color="accent"
+                  >
+                    <mat-label style="color: white">Time period</mat-label>
+                    <mat-select formControlName="timePeriodType">
+                      <mat-option value="year">Year</mat-option>
+                      <mat-option value="month">Month</mat-option>
+                      <mat-option value="day">Day</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="example-form">
+                  <mat-form-field
+                    color="accent"
+                    appearance="outline"
+                    class="example-full-width"
+                  >
+                    <mat-label style="color: white">Time Period</mat-label>
+                    <input
+                      style="text-align: right"
+                      matInput
+                      autocomplete="off"
+                      type="number"
+                      formControlName="timePeriod"
+                      name="timePeriod"
+                      placeholder="Enter the Time Period"
+                    />
+                    <span matTextSuffix>&nbsp;/Yr</span>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="example-form">
+                <mat-form-field
+                  color="accent"
+                  appearance="outline"
+                  class="example-full-width"
+                >
+                  <mat-label style="color: white"
+                    >Rate of Interest(p.a)</mat-label
+                  >
+                  <input
+                    style="text-align: right"
+                    matInput
+                    autocomplete="off"
+                    type="number"
+                    formControlName="rateOfInterest"
+                    name="rateOfInterest"
+                    placeholder="Enter the Rate of Interest"
+                  />
+                  <span matTextSuffix>&nbsp;%</span>
+
+                  <mat-hint>Rate of interest in % </mat-hint>
+                </mat-form-field>
+              </div>
+
+              <button
+                type="button"
+                (click)="addDebtorDetails()"
+                mat-raised-button
+                color="accent"
+              >
+                Add Debtor Details
+              </button>
+
+              <div formArrayName="debtorDetails">
+                <div *ngFor="let debtorDetail of debtorDetails; let i = index">
+                  <div [formGroupName]="i">
+                    <div class="example-form">
+                      <mat-form-field
+                        color="accent"
+                        appearance="outline"
+                        class="example-full-width"
+                      >
+                        <mat-label style="color: white"
+                          >Document Name</mat-label
+                        >
+                        <!-- formControlName="docName" -->
+                        <input
+                          matInput
+                          type="text"
+                          name="docName"
+                          formControlName="docName"
+                          placeholder="Enter the Document Name"
+                        />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="example-form">
+                      <mat-form-field
+                        color="accent"
+                        appearance="outline"
+                        class="example-full-width"
+                      >
+                        <mat-label style="color: white"
+                          >Document Description</mat-label
+                        >
+                        <textarea
+                          matInput
+                          autocomplete="off"
+                          type="text"
+                          formControlName="docDescription"
+                          name="docDescription"
+                          placeholder="Enter the Document Description"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- formControlName="document" -->
+                    <input
+                      hidden
+                      #fileUpload
+                      type="file"
+                      name="document"
+                      (change)="onAddDebtorFileClick($event,i)"
+                    />
+
+                    <div class="file-upload">
+                      No file uploaded yet.
+
+                      <button
+                        type="button"
+                        mat-mini-fab
+                        color="primary"
+                        class="upload-btn"
+                        (click)="fileUpload.click()"
+                      >
+                        <mat-icon>attach_file</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <mat-divider style="margin: 10px 0"></mat-divider>
+            </div>
+          </div>
+
+          <div style="width: 100%">
+            <div>
+              <p>Principal Amount: {{ getPrincipleAmount }}</p>
+
+              <p>Total Interest: {{ getTotalInterest }}</p>
+
+              <p>Total Amount: {{ getTotalAmount() + getPrincipleAmount }}</p>
+            </div>
+
+            <div class="graph-cover">
+              <div class="widget-heading p-3 font-weight-bold">
+                <h5 class="useage">API Usage</h5>
+              </div>
+              <!-- <div id="chart">
+                <apx-chart
+                  [series]="chartOptions.series"
+                  [chart]="chartOptions.chart"
+                  [xaxis]="chartOptions.xaxis"
+                  [stroke]="chartOptions.stroke"
+                  [tooltip]="chartOptions.tooltip"
+                  [dataLabels]="chartOptions.dataLabels"
+                ></apx-chart>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p>Surety's Data</p>
+          <mat-divider></mat-divider>
+          <div style="margin: 10px"></div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end">
+          <!-- <button
+            style="margin-right: 10px"
+            mat-raised-button
+            color="warn"
+            type="button"
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <button mat-raised-button color="accent" type="button" matStepperNext>
+            Next
+          </button> -->
+          <button mat-raised-button color="accent" type="submit">Submit</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div style="display: flex; justify-content: flex-end">
+          <button
+            style="margin-right: 10px"
+            mat-raised-button
+            color="warn"
+            matStepperPrevious
+          >
+            Back
+          </button>
+          <!-- <button mat-raised-button color="accent" type="submit">Submit</button> -->
+          <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+        </div>
+      </mat-step>
+    </div>
+  </mat-stepper>
+</form>
